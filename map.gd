@@ -13,5 +13,6 @@ func _ready():
 	cam.add_target($Player2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(_delta):
+	$HUD/Player1Health.text = 'Player 1 health: %s' % $Player1.health
+	$HUD/Player2Health.text = 'Player 2 health: %s' % $Player2.health

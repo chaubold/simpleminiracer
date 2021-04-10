@@ -22,6 +22,10 @@ export (float) var traction_slow = 0.7  # Low-speed traction
 
 export (int) var player_id = 1 setget set_player_id
 
+export (int) var health = 100 setget set_health
+
+signal explode
+
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 var steer_angle
@@ -35,9 +39,29 @@ func set_player_id(value):
 		2:
 			var frames = preload("car_yellow_sprites.tres")
 			$AnimatedSprite.set_sprite_frames(frames)
+			$AnimatedSprite.scale *= 1.05
 			player_id = value
 		_:
 			print("Invalid player ID")	
+
+func set_health(value):
+	health = value
+	
+	if value > 80:
+		$AnimatedSprite.play('100')
+	elif value > 60:
+		$AnimatedSprite.play('080')
+	elif value > 40:
+		$AnimatedSprite.play('060')
+	elif value > 20:
+		$AnimatedSprite.play('040')
+	elif value > 0:
+		$AnimatedSprite.play('020')
+		$AnimatedSprite/CPUParticles2D.emitting = true
+	else:
+		$AnimatedSprite.play('020')
+		$AnimatedSprite/CPUParticles2D.emitting = true
+		emit_signal("explode")
 
 func _physics_process(delta):
 	acceleration = Vector2.ZERO
@@ -57,6 +81,9 @@ func apply_friction():
 	acceleration += drag_force + friction_force
 
 func get_input():
+	if health <= 0:
+		return
+	
 	var turn = 0
 	if Input.is_action_pressed("p%s_left" % player_id):
 		turn += 1

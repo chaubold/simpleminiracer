@@ -1,11 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://car_red_sprites.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://PNG/Car_Effects/Smoke/Smoke_000.png" type="Texture" id=2]
+[ext_resource path="res://PNG/Car_Effects/Smoke/Smoke_001.png" type="Texture" id=3]
+[ext_resource path="res://PNG/Car_Effects/Smoke/Smoke_002.png" type="Texture" id=4]
+[ext_resource path="res://PNG/Car_Effects/Smoke/Smoke_005.png" type="Texture" id=5]
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=6]
+[ext_resource path="res://PNG/Car_Effects/Smoke/Smoke_003.png" type="Texture" id=7]
+[ext_resource path="res://PNG/Car_Effects/Smoke/Smoke_004.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 47.7763
 height = 130.302
+
+[sub_resource type="AnimatedTexture" id=2]
+flags = 4
+frames = 6
+fps = 2.0
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 3 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 4 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 7 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 8 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 5 )
+frame_5/delay_sec = 0.0
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.576159, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.546358, 0.546358, 0.546358, 1, 0.936503, 0.944824, 0.701373, 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 6 )
@@ -22,3 +48,29 @@ rotation = 1.5708
 scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 1 )
 animation = "100"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="AnimatedSprite"]
+position = Vector2( -0.00120221, -332.104 )
+rotation = -1.5708
+scale = Vector2( 5, 5 )
+emitting = false
+amount = 5
+lifetime = 2.0
+speed_scale = 2.72
+randomness = 0.04
+lifetime_randomness = 0.02
+local_coords = false
+draw_order = 1
+texture = SubResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 31.97
+gravity = Vector2( 0, 0 )
+initial_velocity = 5.38
+initial_velocity_random = 0.22
+angular_velocity_random = 0.11
+orbit_velocity_random = 0.09
+damping = 1.08
+damping_random = 0.09
+scale_amount = 0.2
+scale_amount_random = 0.07
+color_ramp = SubResource( 3 )
