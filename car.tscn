@@ -22,6 +22,3 @@ rotation = 1.5708
 scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 1 )
 animation = "100"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
