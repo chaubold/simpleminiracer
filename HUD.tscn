@@ -1,0 +1,25 @@
+[gd_scene format=2]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Player1Health" type="Label" parent="."]
+margin_left = 21.575
+margin_top = 23.63
+margin_right = 162.575
+margin_bottom = 37.63
+rect_scale = Vector2( 2, 2 )
+text = "Player 1 Health: 100%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player2Health" type="Label" parent="."]
+margin_left = 21.3398
+margin_top = 58.5944
+margin_right = 162.34
+margin_bottom = 72.5944
+rect_scale = Vector2( 2, 2 )
+text = "Player 2 Health: 100%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
